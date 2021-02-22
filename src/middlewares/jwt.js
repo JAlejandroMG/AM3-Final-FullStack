@@ -14,7 +14,7 @@ export const generateJWT = (user) => {
     return token;
 }
 
-export const validateJWT = (req, res, next) => {
+/* export const validateJWT = (req, res, next) => {
     // const token = req.headers.authorization.split(" ")[1];
     const bearerToken = req.headers['authorization'];
     const token = bearerToken.split(" ")[1];
@@ -27,4 +27,4 @@ export const validateJWT = (req, res, next) => {
             message: "Token inválido"
         });
     }
-}
+} */
