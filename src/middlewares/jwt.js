@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import JWT from "express-jwt";
+
 
 //Generate Tokens with generateJWT
 export const generateJWT = (user) => {
