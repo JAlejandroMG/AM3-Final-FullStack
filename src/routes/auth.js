@@ -1,15 +1,11 @@
 import express from "express";
 import { login, signUp } from "../controllers/auth";
-import { getUsers } from "../controllers/users";
+
 const router = express.Router();
 //Enrutando peticiones 
 
 //Auth Login & SignUp
-router.post("/login", login);
-router.post("/signup", signUp);
-
-//Auth GetUser
-router.get("/users", getUsers);
-
+router.post("/api/v1/login", login);
+router.post("/api/v1/signup", signUp);
 
 export default router;
