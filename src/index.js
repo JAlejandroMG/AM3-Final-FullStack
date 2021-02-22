@@ -5,7 +5,9 @@ import helmet from "helmet";
 import authRouter from "./routes/auth";
 // import { validateJWT } from "./middlewares/jwt.js"
 
+
 const app = express();
+
 
 //Middlewares
 app.use(helmet());
@@ -14,7 +16,6 @@ app.use(cors());
 app.use(express.json());
 app.use(authRouter);
 // app.use("/api/v1", validateJWT, usersRouter);
-
 
 
 app.get('/', (req, res) => {
