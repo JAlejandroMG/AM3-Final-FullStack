@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import JWT from "express-jwt"
+import JWT from "express-jwt";
 
 //Generate Tokens with generateJWT
 export const generateJWT = (user) => {
@@ -14,17 +14,17 @@ export const generateJWT = (user) => {
     return token;
 }
 
-export const validateJWT = (req, res, next) => {
-    // const token = req.headers.authorization.split(" ")[1];
-    const bearerToken = req.headers['authorization'];
-    const token = bearerToken.split(" ")[1];
-    try {
-        const verified =  JWT.verify(token, process.env.SECRET_KEY);
-        next();
-        // return verified;
-    } catch (error) {
-        res.status(401).json({
-            message: "Token inválido"
-        });
-    }
-}
+// export const validateJWT = (req, res, next) => {
+//     // const token = req.headers.authorization.split(" ")[1];
+//     const bearerToken = req.headers['authorization'];
+//     const token = bearerToken.split(" ")[1];
+//     try {
+//         const verified =  JWT.verify(token, process.env.SECRET_KEY);
+//         next();
+//         // return verified;
+//     } catch (error) {
+//         res.status(401).json({
+//             message: "Token inválido"
+//         });
+//     }
+// }
