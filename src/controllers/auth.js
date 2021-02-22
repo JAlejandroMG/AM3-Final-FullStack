@@ -2,6 +2,7 @@ import { Users } from "../models/";
 import bcryptjs from "bcryptjs";
 import { generateJWT } from "../middlewares/jwt";
 
+
 //Users Login
 export const login = async (req, res) => {
     const { email, password } = req.body;
@@ -20,13 +21,13 @@ export const login = async (req, res) => {
                 message:"Credenciales incorrectas. Fallo de contraseña"
             });
         }
- 
     }catch(error){
         return res.status(401).json({
             message:"Credenciales incorrectas. No existe un usuario con estas credenciales"
         });
     }
 }
+
 
 //Users Register
 export const signUp = async (req, res) => {
