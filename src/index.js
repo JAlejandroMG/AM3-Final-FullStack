@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import authRouter from "./routes/auth";
 import usersRouter from "./routes/users";
+import rolesRouter from "./routes/roles";
 // import { validateJWT } from "./middlewares/jwt.js"
 
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(authRouter);
 app.use(usersRouter);
+app.use(rolesRouter);
 // app.use("/api/v1", validateJWT, usersRouter);
 
 
