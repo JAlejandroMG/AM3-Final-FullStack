@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.1",
+    "info":{
+        "title": "API Documentation Final Node Full-Stack",
+        "version": "1.0.0",
+        "description": "Admin System Users Roles",
+        "contact": {
+            "email": "kadoshrr2019@gmail.com",
+            "name": "Roger Reyes"
+        }
+    },
+    "paths": {
+        "/api/v1/login": {
+            "post": {
+              "tags": ["Auth"],
+              "description": "Inicio de sesión",
+              "requestBody": {
+                "description": "Credenciales de acceso",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Login"
+                    }
+                  }
+                }
+              },
+                "responses": {
+                    "200" : {
+                    "description": "Credenciales correctas"
+                    }
+                }
+            }
+        },
+ 
+        "/api/v1/signup": {
+            "post": {
+            "tags": ["Auth"],
+            "description": "Registro de usuarios",
+            "requestBody": {
+                "description": "Datos de usuario",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "$ref": "#/components/schemas/Users"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201" : {
+                "description": "Se ha agregado el usuario en el sistema"
+                }
+            },
+            "security": [
+                {
+                "jwt_token": []
+                }
+            ]
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+            "tags": ["Users"],
+            "description": "Obtener todos los usuarios"
+            },
+            "post": {
+            "tags": ["Users"]
+            }
+        }
+        },
+    "components": {
+        "schemas": {
+            "Login": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+            "Users":{
+                "type": "object",
+                "required": [
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 8
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "jwt": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "JSON WEB TOKEN"
+            }
+        }
+    }
+}
