@@ -1,0 +1,203 @@
+{
+    "openapi": "3.0.1",
+    "info":{
+        "title": "API Documentation Final Node Full-Stack",
+        "version": "1.0.0",
+        "description": "Admin System Users Roles",
+        "contact": {
+            "email": "kadoshrr2019@gmail.com",
+            "name": "Roger Reyes"
+        }
+    },
+    "paths": {
+        "/api/v1/login": {
+            "post": {
+              "tags": ["Auth"],
+              "description": "Inicio de sesión y generar token de autorización JWT",
+              "requestBody": {
+                "description": "Credenciales de acceso",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Login"
+                    }
+                  }
+                }
+              },
+                "responses": {
+                    "200" : {
+                    "description": "Credenciales correctas"
+                    }
+                }
+            }
+        },
+ 
+        "/api/v1/signup": {
+            "post": {
+            "tags": ["Auth"],
+            "description": "Registrar un usuario y guardar el registro del usuario con su contraseña encriptada",
+            "requestBody": {
+                "description": "Datos de usuario",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "$ref": "#/components/schemas/Users"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201" : {
+                "description": "Se ha agregado el usuario en el sistema"
+                }
+            },
+                "security": [
+                    {
+                    "jwt_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/reset-password": {
+            "post": {
+              "tags": ["Auth"],
+              "description": "Creará un nuevo “token” UUID en la tabla ResetTokens",
+              "requestBody": {
+                "description": "Credenciales de acceso",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ResetPassword"
+                    }
+                  }
+                }
+              },
+                "responses": {
+                    "200" : {
+                    "description": "Credenciales correctas"
+                    }
+                }
+            }
+        },
+        "/api/v1/roles": {
+            "post": {
+            "tags": ["Roles"],
+            "description": "Agregar un nuevo rol",
+            "requestBody": {
+                "description": "Datos de usuario",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                        "$ref": "#/components/schemas/Roles"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201" : {
+                "description": "Se ha agregado un rol al sistema"
+                }
+            },
+                "security": [
+                    {
+                    "jwt_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": ["Users"],
+                "description": "Obtener todos los usuarios de la base de datos (protegida)",
+                    "requestBody": {
+                        "description": "Datos de usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200" : {
+                        "description": "Se han obtenido todos los usuarios con exito!"
+                        }
+                    }
+                }
+            }
+        },
+    "components": {
+        "schemas": {
+            "Login": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+            "Users":{
+                "type": "object",
+                "required": [
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 8
+                    }
+                }
+            },
+            "ResetPassword": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+            "Roles": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+            
+                }
+            }
+        },
+        "securitySchemes": {
+            "jwt": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "JSON WEB TOKEN"
+            }
+        }
+    }
+}

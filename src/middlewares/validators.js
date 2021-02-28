@@ -31,5 +31,4 @@ export const userSchema = joi.object({
    firstName: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).label("firstName").messages(spanishJoi),
    lastName: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).label("lastName").messages(spanishJoi),
    email: joi.string().required().email().label("email").messages(spanishJoi),
-   password: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).label("password").messages(spanishJoi)
-});
+   password: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).label("password").messages(spanishJoi)});
