@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
-          key: "id"
+          foreignKey: "id"
         }
       },
       roleId: {
@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "Roles",
-          key: "id"
+          foreignKey: "id"
         }
       },
       createdAt: {
