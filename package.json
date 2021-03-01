@@ -20,25 +20,36 @@
     "@babel/preset-env": "^7.12.16",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+<<<<<<< HEAD
     "google": "^2.1.0",
+=======
+    "googleapis": "^67.1.0",
+>>>>>>> d1040084d3600155bd1f697bc97e4e887f666647
     "helmet": "^4.4.1",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
+<<<<<<< HEAD
     "morgan": "^1.10.0",
+=======
+>>>>>>> d1040084d3600155bd1f697bc97e4e887f666647
     "nodemailer": "^6.5.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "save-dev": "0.0.1-security",
     "sequelize": "^6.5.0",
     "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "jest": "^26.6.3",
+=======
+    "dotenv": "^8.2.0",
+    "jest": "^26.6.3",
+    "morgan": "^1.10.0",
+>>>>>>> d1040084d3600155bd1f697bc97e4e887f666647
     "nodemon": "^2.0.7",
     "sequelize-cli": "^6.2.0",
     "supertest": "^6.1.3"

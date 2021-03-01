@@ -18,10 +18,18 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(authRouter);
 app.use(usersRouter);
 app.use(rolesRouter);
+
+// app.use('/api/v1/');
+// app.use(authRouter);
+
+// app.use('api/v1/', authRouter);
+
 // app.use("/api/v1", validateJWT, usersRouter);
 
 

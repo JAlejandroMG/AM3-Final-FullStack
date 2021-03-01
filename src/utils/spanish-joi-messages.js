@@ -69,7 +69,7 @@ export default {
    "string.length": "debe ser exactamente de {#limit} caracteres de largo",
    "string.alphanum": "debe contener solo letras y números",
    "string.token": "debe contener solo letras, números y guines bajos",
-   "string.empty": "El campo se encuentra vacio",
+   "string.empty": `Un campo se encuentra vacio`,
    "string.regex.base": "el valor \"{!value}\" no coincide con el pattern requerido: {#pattern}",
    "string.regex.name": "el valor \"{!value}\" no coincide con el nombre de pattern {#name}",
    "string.email": "debe ser un email válido",
