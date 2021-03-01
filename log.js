@@ -19,4 +19,8 @@
 //+ 20210222
 //* Endpoint GET users protegido
 //* Endpoint POST roles validado y protegido
-//[ Endpoint POST para agregar role a usuario validado y protegido / error al insertar en BD
+//* Endpoint POST para agregar role a usuario validado y protegido
+//+ 20210228
+//* Instalación jest, supertest, uuid, moment, nodemailer, googleapis
+//* Endpoint POST /reset-password, /update-password, /users
+//* Endpoint PUT /users/:userId, /roles/:roleId, users/:userId/roles/:roleId
