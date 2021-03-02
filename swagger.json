@@ -79,6 +79,28 @@
                 }
             }
         },
+        "/api/v1/users/users:Id/update-password": {
+          "put": {
+            "tags": ["Auth"],
+            "description": "Actualizar el usuario basado en el Token UUID",
+            "requestBody": {
+              "description": "Credenciales de acceso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UpdatePassword"
+                  }
+                }
+              }
+            },
+              "responses": {
+                  "200" : {
+                  "description": "Credenciales correctas"
+                  }
+              }
+          }
+          
+      },
         "/api/v1/roles": {
             "post": {
             "tags": ["Roles"],
@@ -105,28 +127,51 @@
                 ]
             }
         },
+        "/api/v1/users/:userId/roles/rolesId": {
+          "post": {
+              "tags": ["Roles"],
+              "description": "Agregar un Rol al Usuario",
+                  "requestBody": {
+                      "description": "Datos de usuario",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                              "$ref": "#/components/schemas/UserRoles"
+                              }
+                          }
+                      }
+                  },
+                  "responses": {
+                      "200" : {
+                      "description": "Se han obtenido todos los usuarios con exito!"
+                      }
+                  }
+              }
+          },
+          
         "/api/v1/users": {
-            "get": {
-                "tags": ["Users"],
-                "description": "Obtener todos los usuarios de la base de datos (protegida)",
-                    "requestBody": {
-                        "description": "Datos de usuario",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                "$ref": "#/components/schemas/Users"
-                                }
-                            }
-                        }
-                    },
-                    "responses": {
-                        "200" : {
-                        "description": "Se han obtenido todos los usuarios con exito!"
-                        }
-                    }
-                }
-            }
-        },
+          "get": {
+              "tags": ["Users"],
+              "description": "Obtener todos los usuarios de la base de datos (protegida)",
+                  "requestBody": {
+                      "description": "Datos de usuario",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                              "$ref": "#/components/schemas/Users"
+                              }
+                          }
+                      }
+                  },
+                  "responses": {
+                      "200" : {
+                      "description": "Se han obtenido todos los usuarios con exito!"
+                      }
+                  }
+              }
+          }
+       },
+     
     "components": {
         "schemas": {
             "Login": {
@@ -176,6 +221,37 @@
                 "properties": {
                   "email": {
                     "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "UpdatePassword": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "UserRoles": {
+                "type": "object",
+                "required": [
+                  "userId"
+                ],
+                "properties": {
+                  "userId": {
+                    "type": "integer"
+                  },
+                  "roleId": {
+                    "type": "integer"
                   }
                 }
               },
