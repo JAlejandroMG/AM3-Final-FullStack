@@ -1,7 +1,7 @@
 //!----------------------------- PROYECTO FINAL -----------------------------¡//
 
+//{--------------- PARTE1 - API REST - MÓDULO BACKEND NODE JS ---------------}//
 
-//{------------------- PARTE1 - API REST - MÓDULO BACKEND -------------------}//
 //+Objetivo
 //*Crear un servidor de autenticación JWT, incluir validaciones, agregar seguridad con helmet y agregar la dependencia de CORS.
 //+CONFIGURACION
@@ -49,7 +49,7 @@
 //*7.api/v1/users/:userId/roles/:rolesId
 
 
-//{------------------- PARTE2 - API REST - MÓDULO BACKEND -------------------}//
+//{--------------- PARTE2 - API REST - MÓDULO BACKEND NODE JS ---------------}//
 //+Objetivo
 //{Agregar la documentación para los endpoints creados en la primera parte del proyecto con Swagger usando OpenAPI 3.0, validar los datos enviados a través de las peticiones POST y PUT, usar nodemailer para enviar un correo de restablecimiento de contraseña.
 //+CONFIGURACION
@@ -94,3 +94,51 @@
 //+RETO Nodemailer
 //{ Usar handlebars para crear una plantilla para restablecer la contraseña.
 //{ https://alexanderpaterson.com/posts/use-handlebars-to-send-great-emails-from-node-applications
+
+
+//{--------------- PARTE3 - API REST - MÓDULO BACKEND NODE JS ---------------}//
+//+Objetivo
+//{Montar la DB imdb, los modelos y migraciones de la base de datos dentro del proyecto y crear las rutas, agregar la validación para los roles, agregar la documentación y realizar las pruebas unitarias con jest.
+//+CONFIGURACIÓN
+//*1. Jest https://www.npmjs.com/package/jest
+//*2. Supertest https://www.npmjs.com/package/supertest
+//+MONTAR LA BASE DE DATOS IMDB
+//*1. Descomprimir el archivo imdb
+//*2. Para usuarios de Windows les recomiendo descomprimirlo en C:\Users\Public
+//*3. Para usuarios de Linux y Mac Os x pueden descomprimirlo en cualquier directorio
+//*4. Modificar el archivo restore.sql, buscar y remplazar $$PATH$$ por la ruta en la que se encuentran los archivos que descomprimiste.
+//*5. Ubicarse desde la terminal en el directorio en el cual descomprimieron el archivo.
+//*6. Correr el comando psql -f restore.sql -U <username> -d <database> sustituyendo <username> y <database>
+//+CREAR LOS MODELOS Y MIGRACIONES
+//{1. Actors
+//{2. ContentActors
+//{3. Directors
+//{4. ContentDirectors
+//{5. Contents
+//{6. EpisodeList
+//{7. ContentGenres
+//{8. Genres
+//{9. Languages
+//{10. ContentRatings
+//{11. ContentTypes
+//}Nota: Al terminar de hacer todas las migraciones tendrás que editar el archivo data.sql y renombrar las tablas con los nombres de las tablas que se crearon al haber realizado la migración. Por último tendrás importar los datos con el siguiente comando: psql -f data.sql -U <username> -d <database> sustituyendo <username> y <database>
+//+ROLES (SÓLO SI TIENE AUTORIZACIÓN POR JWT)
+//{Rol               Lectura  Escritura   Edición  Eliminar
+//{Administrador     Si       Si          Si       Si
+//{Editor            Si       Si          Si       No
+//{Usuario           Si*      Si*         Si*      No
+//} *Puede leer, escribir y editar sus propios recursos (No puede afectar los registros de otros usuarios)
+//+AGREGAR LAS RUTAS PARA LAS NUEVAS ENTIDADES
+//{1. Agregar todas las rutas sobre los métodos GET, POST, PUT y DELETE para las nuevas entidades, por ejemplo:
+//{2. GET /api/v1/actors
+//{3. GET /api/v1/actors/:id
+//{4. POST /api/v1/actors
+//{5. PUT /api/v1/actors/:id
+//{6. DELETE /api/v1/actors/:id
+//{Si hay entidades que se requieran de otras entidades tendrás que hacer lo siguiente, por ejemplo:
+//{1. GET /api/v1/contents/:id/actors
+   //}a. Para obtener un contenido con los actores que han participado
+//{2. GET /api/v1/actors/:id/contents
+   //}a. Para obtener un actor y todos los contenidos en los que ha participado
+//+PRUEBAS UNITARIAS
+//{1. Crear las pruebas unitarias con Jest y Supertest usando TDD, tendrás que evaluar los casos de éxito y los casos en los que pueda haber un error al momento de hacer una petición en la API.
