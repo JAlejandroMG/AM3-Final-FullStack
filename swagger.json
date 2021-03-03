@@ -1,279 +1,608 @@
 {
-    "openapi": "3.0.1",
-    "info":{
-        "title": "API Documentation Final Node Full-Stack",
-        "version": "1.0.0",
-        "description": "Admin System Users Roles",
-        "contact": {
-            "email": "kadoshrr2019@gmail.com",
-            "name": "Squad #4 Academlo Generación Agosto 2020-2021"
-        }
-    },
-    "paths": {
-        "/api/v1/login": {
-            "post": {
-              "tags": ["Auth"],
-              "description": "Inicio de sesión y generar token de autorización JWT",
-              "requestBody": {
-                "description": "Credenciales de acceso",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Login"
-                    }
-                  }
-                }
-              },
-                "responses": {
-                    "200" : {
-                    "description": "Credenciales correctas"
-                    }
-                }
-            }
-        },
- 
-        "/api/v1/signup": {
-            "post": {
-            "tags": ["Auth"],
-            "description": "Registrar un usuario y guardar el registro del usuario con su contraseña encriptada",
-            "requestBody": {
-                "description": "Datos de usuario",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                        "$ref": "#/components/schemas/Users"
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "201" : {
-                "description": "Se ha agregado el usuario en el sistema"
-                }
-            },
-                "security": [
-                    {
-                    "jwt_token": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/reset-password": {
-            "post": {
-              "tags": ["Auth"],
-              "description": "Creará un nuevo “token” UUID en la tabla ResetTokens",
-              "requestBody": {
-                "description": "Credenciales de acceso",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/ResetPassword"
-                    }
-                  }
-                }
-              },
-                "responses": {
-                    "200" : {
-                    "description": "Credenciales correctas"
-                    }
-                }
-            }
-        },
-        "/api/v1/users/users:Id/update-password": {
-          "put": {
-            "tags": ["Auth"],
-            "description": "Actualizar el usuario basado en el Token UUID",
-            "requestBody": {
-              "description": "Credenciales de acceso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/UpdatePassword"
-                  }
-                }
-              }
-            },
-              "responses": {
-                  "200" : {
-                  "description": "Credenciales correctas"
-                  }
-              }
-          }
-          
-      },
-        "/api/v1/roles": {
-            "post": {
-            "tags": ["Roles"],
-            "description": "Agregar un nuevo rol",
-            "requestBody": {
-                "description": "Datos de usuario",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                        "$ref": "#/components/schemas/Roles"
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "201" : {
-                "description": "Se ha agregado un rol al sistema"
-                }
-            },
-                "security": [
-                    {
-                    "jwt_token": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/users/:userId/roles/rolesId": {
-          "post": {
-              "tags": ["Roles"],
-              "description": "Agregar un Rol al Usuario",
-                  "requestBody": {
-                      "description": "Datos de usuario",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                              "$ref": "#/components/schemas/UserRoles"
-                              }
-                          }
-                      }
-                  },
-                  "responses": {
-                      "200" : {
-                      "description": "Se han obtenido todos los usuarios con exito!"
-                      }
-                  }
-              }
-          },
-          
-        "/api/v1/users": {
-          "get": {
-              "tags": ["Users"],
-              "description": "Obtener todos los usuarios de la base de datos (protegida)",
-                  "requestBody": {
-                      "description": "Datos de usuario",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                              "$ref": "#/components/schemas/Users"
-                              }
-                          }
-                      }
-                  },
-                  "responses": {
-                      "200" : {
-                      "description": "Se han obtenido todos los usuarios con exito!"
-                      }
-                  }
-              }
-          }
-       },
-     
-    "components": {
-        "schemas": {
-            "Login": {
-                "type": "object",
-                "required": [
-                  "email",
-                  "password"
-                ],
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                }
-              },
-            "Users":{
-                "type": "object",
-                "required": [
-                    "firstName",
-                    "lastName",
-                    "email",
-                    "password"
-                ],
-                "properties": {
-                    "firstName": {
-                        "type": "string"
-                    },
-                    "lastName": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string",
-                        "minLength": 8
-                    }
-                }
-            },
-            "ResetPassword": {
-                "type": "object",
-                "required": [
-                  "email"
-                ],
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                }
-              },
-              "UpdatePassword": {
-                "type": "object",
-                "required": [
-                  "token"
-                ],
-                "properties": {
-                  "token": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                }
-              },
-              "UserRoles": {
-                "type": "object",
-                "required": [
-                  "userId"
-                ],
-                "properties": {
-                  "userId": {
-                    "type": "integer"
-                  },
-                  "roleId": {
-                    "type": "integer"
-                  }
-                }
-              },
-            "Roles": {
-                "type": "object",
-                "required": [
-                  "name"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  }
-            
-                }
-            }
-        },
-        "securitySchemes": {
-            "jwt": {
-                "type": "http",
-                "scheme": "bearer",
-                "description": "JSON WEB TOKEN"
-            }
-        }
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Documentation Final Node Full-Stack",
+    "version": "1.0.0",
+    "description": "Admin System Users Roles",
+    "contact": {
+      "email": "kadoshrr2019@gmail.com",
+      "name": "Squad #4 Academlo Generación Agosto 2020-2021"
     }
+  },
+  "paths": {
+    "/api/v1/login": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Inicio de sesión y generar token de autorización JWT",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Registrar un usuario y guardar el registro del usuario con su contraseña encriptada",
+        "requestBody": {
+          "description": "Datos de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Se ha agregado el usuario en el sistema"
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reset-password": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Creará un nuevo “token” UUID en la tabla ResetTokens",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/users/users:Id/update-password": {
+      "put": {
+        "tags": ["Auth"],
+        "description": "Actualizar el usuario basado en el Token UUID",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/actors": {
+      "get": {
+        "tags": ["Actors"],
+        "description": "Obtener todos los actores del sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Actors"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Actors"],
+        "description": "Registrar un Actor al sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Actors"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/actors/:id": {
+      "get": {
+        "tags": ["Actors"],
+        "description": "Obtener un actor por ID en el sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetActor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Actors"],
+        "description": "Actualizar un Actor por ID en el sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Actors"],
+        "description": "Borrar un actor por ID en el sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteActor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/contents": {
+      "get": {
+        "tags": ["Contents"],
+        "description": "Obtener todos los contentidos del sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contents"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Contents"],
+        "description": "Registrar un Contenido al sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contents"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/contents/:id": {
+      "get": {
+        "tags": ["Contents"],
+        "description": "Obtener un contenido por ID en el sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetContents"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Contents"],
+        "description": "Actualizar un Contenido por ID en el sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Contents"],
+        "description": "Borrar un Contenido por ID en el sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteContent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/roles": {
+      "post": {
+        "tags": ["Roles"],
+        "description": "Agregar un nuevo rol",
+        "requestBody": {
+          "description": "Datos de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Se ha agregado un rol al sistema"
+          }
+        },
+        "security": [
+          {
+            "jwt_token": []
+          }
+        ]
+      }
+    },
+    "/api/v1/users/:userId/roles/rolesId": {
+      "post": {
+        "tags": ["Roles"],
+        "description": "Agregar un Rol al Usuario",
+        "requestBody": {
+          "description": "Datos de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRoles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se han obtenido todos los usuarios con exito!"
+          }
+        }
+      }
+    },
+    "/api/v1/directors": {
+      "post": {
+        "tags": ["Directors"],
+        "description": "Registro de Director al sistema",
+        "requestBody": {
+          "description": "Credenciales de acceso",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Directors"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Credenciales correctas"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Obtener todos los usuarios de la base de datos (protegida)",
+        "requestBody": {
+          "description": "Datos de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se han obtenido todos los usuarios con exito!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Users": {
+        "type": "object",
+        "required": ["firstName", "lastName", "email", "password"],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          }
+        }
+      },
+      "Actors": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetActor": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateActor": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "DeleteActor": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "Directors": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Contents": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "total_seasons",
+          "imdb_score",
+          "release_date",
+          "play_time",
+          "total_episodes",
+          "content_type",
+          "imdb_link",
+          "last_updated",
+          "imdb_score_votes",
+          "rating_details",
+          "languages"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "total_seasons": {
+            "type": "integer"
+          },
+          "imdb_score": {
+            "type": "numeric"
+          },
+          "release_date": {
+            "type": "string"
+          },
+          "play_time": {
+            "type": "string"
+          },
+          "total_episodes": {
+            "type": "string"
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "imdb_link": {
+            "type": "string"
+          },
+          "last_updated": {
+            "type": "timestamp"
+          },
+          "imdb_score_votes": {
+            "type": "string"
+          },
+          "rating_details": {
+            "type": "json"
+          },
+          "languages": {
+            "type": "string"
+          }
+        }
+      },
+      "GetContents": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateContent": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "DeleteContent": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "ResetPassword": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdatePassword": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "UserRoles": {
+        "type": "object",
+        "required": ["userId"],
+        "properties": {
+          "userId": {
+            "type": "integer"
+          },
+          "roleId": {
+            "type": "integer"
+          }
+        }
+      },
+      "Roles": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwt": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "JSON WEB TOKEN"
+      }
+    }
+  }
 }
