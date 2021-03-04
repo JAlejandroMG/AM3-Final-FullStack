@@ -51,7 +51,7 @@
 
 //{--------------- PARTE2 - API REST - MÓDULO BACKEND NODE JS ---------------}//
 //+Objetivo
-//{Agregar la documentación para los endpoints creados en la primera parte del proyecto con Swagger usando OpenAPI 3.0, validar los datos enviados a través de las peticiones POST y PUT, usar nodemailer para enviar un correo de restablecimiento de contraseña.
+//*Agregar la documentación para los endpoints creados en la primera parte del proyecto con Swagger usando OpenAPI 3.0, validar los datos enviados a través de las peticiones POST y PUT, usar nodemailer para enviar un correo de restablecimiento de contraseña.
 //+CONFIGURACION
 //*1. Swagger Ui Express https://www.npmjs.com/package/swagger-ui-express
 //*2. Instalar la extensión para vscode https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi
@@ -87,10 +87,10 @@
 //*1. POST api/v1/login – Inicio de sesión y generar token de autorización JWT
 //*2. POST api/v1/signup – Registrar un usuario y guardar el registro del usuario con su contraseña encriptada +++
 //*3. POST api/v1/reset-password – Creará un nuevo “token” UUID en la tabla ResetTokens
-//{4. PUT api/v1/users/:userID/update-password – Actualizar un usuario basado en el token UUID
+//*4. PUT api/v1/users/:userID/update-password – Actualizar un usuario basado en el token UUID
 //*5. GET api/v1/users – Obtener todos los usuarios de la base de datos (protegida)
 //*6. POST api/v1/roles – Agregar un nuevo rol +++
-//{7. POST y PUT api/v1/users/:userID/roles/:rolesID – Agregar un rol para un usuario
+//*7. POST y PUT api/v1/users/:userID/roles/:rolesID – Agregar un rol para un usuario
 //+RETO Nodemailer
 //{ Usar handlebars para crear una plantilla para restablecer la contraseña.
 //{ https://alexanderpaterson.com/posts/use-handlebars-to-send-great-emails-from-node-applications
@@ -110,17 +110,17 @@
 //*5. Ubicarse desde la terminal en el directorio en el cual descomprimieron el archivo.
 //*6. Correr el comando psql -f restore.sql -U <username> -d <database> sustituyendo <username> y <database>
 //+CREAR LOS MODELOS Y MIGRACIONES
-//{1. Actors
-//{2. ContentActors
-//{3. Directors
-//{4. ContentDirectors
-//{5. Contents
-//{6. EpisodeList
-//{7. ContentGenres
-//{8. Genres
-//{9. Languages
-//{10. ContentRatings
-//{11. ContentTypes
+//*1. Actors
+//*2. ContentActors
+//*3. Directors
+//*4. ContentDirectors
+//*5. Contents
+//*6. EpisodeList
+//*7. ContentGenres
+//*8. Genres
+//*9. Languages
+//*10. ContentRatings
+//*11. ContentTypes
 //}Nota: Al terminar de hacer todas las migraciones tendrás que editar el archivo data.sql y renombrar las tablas con los nombres de las tablas que se crearon al haber realizado la migración. Por último tendrás importar los datos con el siguiente comando: psql -f data.sql -U <username> -d <database> sustituyendo <username> y <database>
 //+ROLES (SÓLO SI TIENE AUTORIZACIÓN POR JWT)
 //{Rol               Lectura  Escritura   Edición  Eliminar
