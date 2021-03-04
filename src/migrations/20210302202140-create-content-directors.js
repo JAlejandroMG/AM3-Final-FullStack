@@ -1,0 +1,34 @@
+'use strict';
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('ContentDirectors', {
+      id_Content: {
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Contents",
+          foreignKey:"id"
+        }
+      },
+      id_Director: {
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Directors",
+          foreignKey:"id"
+        }
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('ContentDirectors');
+  }
+};
