@@ -29,7 +29,6 @@ export const signUp = async (req, res) => {
 
 
 //{ Da acceso a usuario
-//Users Login
 export const login = async (req, res) => {
     const { email, password } = req.body;
     try{

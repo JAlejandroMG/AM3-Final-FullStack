@@ -24,17 +24,17 @@ module.exports = (sequelize, DataTypes) => {
 
       this.belongsToMany(models.Actors, {
         through: 'ContentActors',
-        foreingKey: 'id_Content'
+        foreignKey: 'id_Content'
       });
 
       this.belongsToMany(models.Directors, {
         through: 'ContentDirectors',
-        foreingKey: 'id_Content'
+        foreignKey: 'id_Content'
       });
 
       this.belongsToMany(models.Genres, {
         through: 'ContentGenres',
-        foreingKey: 'id_Content'
+        foreignKey: 'id_Content'
       });
     }
   };

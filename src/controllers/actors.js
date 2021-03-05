@@ -1,4 +1,4 @@
-import { Actors } from "../models/";
+import { Actors, Contents } from "../models/";
 
 
 
@@ -90,6 +90,30 @@ export const deleteActorById = async (req,res) => {
             message:"No se ha logrado procesar la petición en nuestro sistema"
          })
       });
+   }catch(error){
+      console.log(error);
+      return res.status(500).json({
+         message:"No se ha logrado procesar la petición en nuestro sistema"
+      });
+   }
+};
+
+
+
+//{ Obtiene el contenido de un actor por id
+export const getContentByActorById = async (req,res) => {
+   try{
+      const id = req.params.id;
+      const results = await Actors.findOne({
+         where: { id },
+         attributes: ["id", "name"],
+         include: [{
+            model: Contents,
+            attributes: ["id", "title", "description", "total_seasons"],
+            through: { attributes: []},
+         }] 
+      });
+      return res.status(200).json(results);
    }catch(error){
       console.log(error);
       return res.status(500).json({
