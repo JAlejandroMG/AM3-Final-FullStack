@@ -1032,7 +1032,7 @@
             "type": "integer"
           },
           "imdb_score": {
-            "type": "numeric"
+            "type": "number"
           },
           "release_date": {
             "type": "string"
@@ -1292,6 +1292,29 @@
           }
         }
       },
+      "GetGenre": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateGenre": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "DeleteGenre": {
+        "type": "object",
+        "required": [""],
+        "properties": {}
+      },
       "Languages": {
         "type": "object",
         "required": ["language_id", "name"],
@@ -1309,6 +1332,29 @@
             "type": "date-time"
           }
         }
+      },
+      "GetLanguage": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateLanguage": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "DeleteLanguage": {
+        "type": "object",
+        "required": [""],
+        "properties": {}
       }
     },
     "securitySchemes": {
