@@ -24,3 +24,10 @@
 //* Instalación jest, supertest, uuid, moment, nodemailer, googleapis
 //* Endpoint POST /reset-password, /update-password, /users
 //* Endpoint PUT /users/:userId, /roles/:roleId, users/:userId/roles/:roleId
+//+ 20210303
+//* Modelos, migraciones y datos de BD IMDB
+//+ 20210304
+//* Relación UserRoles
+//* Valores por defecto createdAt, updatedAt
+//* Validación de Roles
+//* Actors

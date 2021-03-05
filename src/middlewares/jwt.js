@@ -10,7 +10,7 @@ export const generateJWT = (user) => {
         lastName: user.lastName,
         email: user.email
     };
-    const token = jwt.sign(userObj, process.env.SECRET_KEY, {algorithm: "HS384", expiresIn: "1h"});
+    const token = jwt.sign(userObj, process.env.SECRET_KEY, {algorithm: "HS384", expiresIn: "10h"});
     return token;
 }
 

@@ -1,6 +1,8 @@
 import { Roles } from "../models/";
 
 
+
+//{ Crea nuevo rol
 export const createRole = async (req, res) => {
    try{
       const { name } = req.body;
@@ -17,6 +19,8 @@ export const createRole = async (req, res) => {
 };
 
 
+
+//{ Cambia nombre a rol
 export const editRole = async (req, res) => {
    try{
       const { name } = req.body;

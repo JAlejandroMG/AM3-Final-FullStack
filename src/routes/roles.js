@@ -6,10 +6,15 @@ import JWT from "express-jwt";
 const router = express.Router();
 
 
-// Enrutando peticiones
-router.post("/api/v1/roles", JWT({secret: process.env.SECRET_KEY, algorithms: ['HS384']}),validate(roleSchema), createRole);
 
-router.put("/api/v1/roles/:roleId", validate(roleSchema), editRole);
+const objJWT = {secret: process.env.SECRET_KEY, algorithms: ['HS384']};
+
+//{ Crea un nuevo rol
+router.post('roles', JWT(objJWT),validate(roleSchema), createRole);
+
+//{ Edita un role en base a su Id
+router.put('roles/:roleId', validate(roleSchema), editRole);
+
 
 
 export default router;
