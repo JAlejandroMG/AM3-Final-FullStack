@@ -128,6 +128,7 @@
 //*Editor            Si       Si          Si       No
 //*Usuario           Si*      Si*         Si*      No
 //* *Puede leer, escribir y editar sus propios recursos (No puede afectar los registros de otros usuarios)
+
 //+AGREGAR LAS RUTAS PARA LAS NUEVAS ENTIDADES
 //{1. Agregar todas las rutas sobre los métodos GET, POST, PUT y DELETE para las nuevas entidades, por ejemplo:
 //{2. GET /api/v1/actors
@@ -144,3 +145,4 @@
 //{1. Crear las pruebas unitarias con Jest y Supertest usando TDD, tendrás que evaluar los casos de éxito y los casos en los que pueda haber un error al momento de hacer una petición en la API.
 //+DEPLOY HEROKU
 //{PENDIENTE
+
