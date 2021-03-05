@@ -3,7 +3,40 @@ import bcryptjs from "bcryptjs";
 import {Op} from "sequelize";
 
 
-//Edit User
+
+//{ Crea un usuario
+export const createUser = async (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+    try{
+        let hashPassword = bcryptjs.hashSync(password, 10);
+        let newUser = await Users.create({firstName, lastName, email, password: hashPassword });
+        return res.status(201).json({
+            newUser,
+            message: "Registro exitoso"
+        });
+        
+    }catch(error){
+        return res.status(500).json({
+            message:"No se ha logrado procesar la petición en nuestro sistema"
+        });
+    }
+};
+
+
+
+//{ Obtiene todos los usuarios
+export const getUsers = async (req,res) => {
+    try{
+            const results = await Users.findAll();
+            return res.status(200).json(results);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
+
+//{ Edita un usuario por su Id
 export const editUser = async (req, res) => {
     const { firstName, lastName, email } = req.body;
     const userId = req.params.userId;
@@ -23,36 +56,8 @@ export const editUser = async (req, res) => {
 };
 
 
-//Create User
-export const createUser = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-    try{
-        let hashPassword = bcryptjs.hashSync(password, 10);
-        let newUser = await Users.create({firstName, lastName, email, password: hashPassword });
-        return res.status(201).json({
-            newUser,
-            message: "Registro exitoso"
-        });
-        
-    }catch(error){
-        return res.status(500).json({
-            message:"No se ha logrado procesar la petición en nuestro sistema"
-        });
-    }
-};
 
-
-//Get Users (Obtener todos los usuarios)
-export const getUsers = async (req,res) => {
-    try{
-            const results = await Users.findAll();
-            return res.status(200).json(results);
-    }catch{
-        console.log(error);
-    }
-}
-
-
+//{ Asigna un rol a un usuario
 export const userRole = async(req, res) => {
     const { userId, roleId } = req.params;
     try {
@@ -77,9 +82,11 @@ export const userRole = async(req, res) => {
             messsage: "No se ha logrado procesar la petición en nuestro sistema"
         });
     }
-}
+};
 
 
+
+//{ Modifica el rol de un usario
 export const editUserRole = async(req, res) => {
     const { userId, roleId } = req.params;
     const newRoleId = req.body.roleId;
@@ -114,4 +121,28 @@ export const editUserRole = async(req, res) => {
             messsage: "No se ha logrado procesar la petición en nuestro sistema"
         });
     }
-}
+};
+
+
+
+//{ Obtiene los roles de todos los usuarios
+export const getUsersRoles = async (req,res) => {
+    try{
+            const results = await Users.findAll({
+                attributes: {
+                    exclude: ["password", "createdAt", "updatedAt"]
+                },
+                include: [{
+                    model: Roles,
+                    attributes: ["id", "name"],
+                    through: { attributes: [] }
+                }]
+            });
+            /* const userRol = results.forEach(result => {
+                console.log(result.firstName, result.lastName, result.Roles[0].name);
+            }) */
+            return res.status(200).json(results);
+    }catch(error){
+        console.log(error);
+    }
+};

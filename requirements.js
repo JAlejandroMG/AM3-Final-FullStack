@@ -121,13 +121,13 @@
 //*9. Languages
 //*10. ContentRatings
 //*11. ContentTypes
-//}Nota: Al terminar de hacer todas las migraciones tendrás que editar el archivo data.sql y renombrar las tablas con los nombres de las tablas que se crearon al haber realizado la migración. Por último tendrás importar los datos con el siguiente comando: psql -f data.sql -U <username> -d <database> sustituyendo <username> y <database>
+//*Nota: Al terminar de hacer todas las migraciones tendrás que editar el archivo data.sql y renombrar las tablas con los nombres de las tablas que se crearon al haber realizado la migración. Por último tendrás importar los datos con el siguiente comando: psql -f data.sql -U <username> -d <database> sustituyendo <username> y <database>
 //+ROLES (SÓLO SI TIENE AUTORIZACIÓN POR JWT)
-//{Rol               Lectura  Escritura   Edición  Eliminar
-//{Administrador     Si       Si          Si       Si
-//{Editor            Si       Si          Si       No
-//{Usuario           Si*      Si*         Si*      No
-//} *Puede leer, escribir y editar sus propios recursos (No puede afectar los registros de otros usuarios)
+//*Rol               Lectura  Escritura   Edición  Eliminar
+//*Administrador     Si       Si          Si       Si
+//*Editor            Si       Si          Si       No
+//*Usuario           Si*      Si*         Si*      No
+//* *Puede leer, escribir y editar sus propios recursos (No puede afectar los registros de otros usuarios)
 //+AGREGAR LAS RUTAS PARA LAS NUEVAS ENTIDADES
 //{1. Agregar todas las rutas sobre los métodos GET, POST, PUT y DELETE para las nuevas entidades, por ejemplo:
 //{2. GET /api/v1/actors
@@ -142,3 +142,5 @@
    //}a. Para obtener un actor y todos los contenidos en los que ha participado
 //+PRUEBAS UNITARIAS
 //{1. Crear las pruebas unitarias con Jest y Supertest usando TDD, tendrás que evaluar los casos de éxito y los casos en los que pueda haber un error al momento de hacer una petición en la API.
+//+DEPLOY HEROKU
+//{PENDIENTE
