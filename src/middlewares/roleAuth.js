@@ -18,7 +18,7 @@ const getRole = async (id) => {
 export const isAdmin = () => {
    return async (req, res, next) => {
       try{
-         const id = req.params.user;         
+         const id = req.params.userId;         
          const roleName = await getRole(id);
          if(roleName === "Administrador") {
             next();
@@ -40,7 +40,7 @@ export const isAdmin = () => {
 export const isEditor = () => {
    return async (req, res, next) => {
       try{
-         const id = req.params.user;         
+         const id = req.params.userId;         
          const roleName = await getRole(id);
          if(roleName === "Editor" || roleName === "Administrador") {
             next();
@@ -62,7 +62,7 @@ export const isEditor = () => {
 export const isUser = () => {
    return async (req, res, next) => {
       try{
-         const id = req.params.user;         
+         const id = req.params.userId;         
          const roleName = await getRole(id);
          if(roleName === "Usuario" || roleName === "Editor" || roleName === "Administrador") {
             next();
