@@ -6,6 +6,8 @@ import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
 //*Routers
 import actorsRouter from './routes/actors';
+import directorsRouter from './routes/directors';
+import genresRouter from './routes/genres';
 import authRouter from "./routes/auth";
 import rolesRouter from "./routes/roles";
 import usersRouter from "./routes/users";
@@ -24,6 +26,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //*Routers
 app.use('/api/v1', actorsRouter);
+app.use('/api/v1', directorsRouter);
+app.use('/api/v1', genresRouter);
 app.use('/api/v1', authRouter);
 app.use('/api/v1', rolesRouter);
 app.use('/api/v1', usersRouter);
