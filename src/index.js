@@ -6,8 +6,8 @@ import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
 //*Routers
 import actorsRouter from './routes/actors';
-import directorsRouter from './routes/actors';
-import genresRouter from './routes/actors';
+import directorsRouter from './routes/directors';
+import genresRouter from './routes/genres';
 import authRouter from "./routes/auth";
 import rolesRouter from "./routes/roles";
 import usersRouter from "./routes/users";
