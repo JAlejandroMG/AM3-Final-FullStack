@@ -21,7 +21,7 @@ router.put('/actors/:id/:userId', JWT(objJWT), isEditor(), editActorById);
 //{ Elimina un actor por id
 router.delete('/actors/:id/:userId', JWT(objJWT), isAdmin(), deleteActorById);
 
-//{ Obtiene el contenido por un actor
+//{ Obtiene el contenido de un actor
 router.get('/actors/:id/contents/:userId', JWT(objJWT), isUser(), getContentByActorById);
 
 

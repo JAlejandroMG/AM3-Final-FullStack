@@ -7,6 +7,7 @@ import swaggerDocument from "../swagger.json";
 //*Routers
 import actorsRouter from './routes/actors';
 import authRouter from "./routes/auth";
+import contentsRouter from './routes/contents';
 import rolesRouter from "./routes/roles";
 import usersRouter from "./routes/users";
 
@@ -25,6 +26,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //*Routers
 app.use('/api/v1', actorsRouter);
 app.use('/api/v1', authRouter);
+app.use('/api/v1', contentsRouter);
 app.use('/api/v1', rolesRouter);
 app.use('/api/v1', usersRouter);
 

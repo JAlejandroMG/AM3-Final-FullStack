@@ -52,9 +52,6 @@ module.exports = (sequelize, DataTypes) => {
     imdb_score_votes: DataTypes.INTEGER,
     rating_details: DataTypes.JSON,
     languages: DataTypes.STRING,
-    last_updated: {
-      type: DataTypes.STRING
-    }
   }, {
     sequelize,
     modelName: 'Contents',
