@@ -1,22 +1,31 @@
 import express from "express";
-import { userRole, getUsers, createUser, editUser, editUserRole } from "../controllers/users";
+import { userRole, getUsers, createUser, editUser, editUserRole, getUsersRoles } from "../controllers/users";
 import { validate, userSchema, userEditSchema, roleUserSchema } from "../middlewares/validators";
+import { isAdmin } from '../middlewares/roleAuth';
 import JWT from "express-jwt"
 
 const router = express.Router();
 
 
-//Enrutando peticiones
 
-router.get("/api/v1/users", JWT({secret: process.env.SECRET_KEY, algorithms: ['HS384']}), getUsers);
+const objJWT = {secret: process.env.SECRET_KEY, algorithms: ['HS384']};
 
-router.post("/api/v1/users", validate(userSchema), createUser);
+//{ Crea un usuario
+router.post('/users', validate(userSchema), createUser);
+//{ Obtiene todos los actores
+router.get('/users', isAdmin(), getUsers);
 
-router.put("/api/v1/users/:userId", validate(userEditSchema), editUser);
+//{ Modifica un usuario por id
+router.put("users/:userId", validate(userEditSchema), editUser);
 
-router.post("/api/v1/users/:userId/roles/:roleId", JWT({secret: process.env.SECRET_KEY, algorithms: ['HS384']}), userRole);
+//{ Asigna un rol a un usuario
+router.post("users/:userId/roles/:roleId", JWT(objJWT), userRole);
+//{ Modifica un rol a un usuario
+router.put("users/:userId/roles/:roleId", validate(roleUserSchema), editUserRole);
 
-router.put("/api/v1/users/:userId/roles/:roleId", validate(roleUserSchema), editUserRole);
+//{ Obtiene los roles de todos los usuarios
+router.get("users/roles", getUsersRoles);
+
 
 
 export default router;

@@ -7,40 +7,18 @@ import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
 
 
-//Update Password
-export const update = async (req, res) => {
-    const { password, token} = req.body;
-    const userId = req.params.userId;
-    console.log(userId, token, password);
+
+//{ Registra usuario
+export const signUp = async (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
     try{
-        //* Validar que el userId y el token existan en el mismo registro
-        const tokenObj = await ResetTokens.findOne({where: {token, [Op.and]: { 
-            userId
-        }}});
-        if(tokenObj){
-            //* Validar que el token no haya expirado
-            // La fecha actual es menor a la fecha de expiracion?
-            let validToken = moment().isBefore(tokenObj.expirationDate);
-            //* Si el token está activo y no ha expirado
-            if(tokenObj.active && validToken){
-                //* Encriptar la nueva contraseña
-                let hashPassword = bcryptjs.hashSync(password, 10);
-                //*Cambiar la contrasena en la DB
-                await Users.update({password: hashPassword}, {where: {id: tokenObj.userId}});
-                //* Cambiar el estatus del token a false
-                await ResetTokens.update({active: false}, {where: {id: tokenObj.id}});
-                res.status(200).json({
-                    message: "Se ha restablecido tu contraseña"
-                });
-            }
-            return res.status(403).json({
-                message: "Credenciales incorrectas, no se pudo procesar la petición"
-            });
-        }else{
-            res.status(404).json({
-                message: "Credenciales incorrectas, no se pudo procesar la petición"
-            });
-        }
+        let hashPassword = bcryptjs.hashSync(password, 10);
+        let newUser = await Users.create({firstName, lastName, email, password: hashPassword });
+        return res.status(201).json({
+            newUser,
+            message: "Registro exitoso!"
+        });
+        
     }catch(error){
         return res.status(500).json({
             message:"No se ha logrado procesar la petición en nuestro sistema"
@@ -49,7 +27,36 @@ export const update = async (req, res) => {
 };
 
 
-//Reset Password
+
+//{ Da acceso a usuario
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+    try{
+        const results = await Users.findOne({where: {email: email}});
+        const valid = bcryptjs.compareSync(password, results.password);
+        
+        if(valid){
+            const token = generateJWT(results);
+            return res.status(200).json({
+                user: results, //Enviamos al cliente los resultados al mensaje del inicio de sesión
+                message: "Inicio de sesión exitoso!",
+                token,
+            });
+        }else{
+            return res.status(403).json({
+                message:"Credenciales incorrectas, no se pudo procesar su petición"
+            });
+        }
+    }catch(error){
+        return res.status(404).json({
+            message:"Credenciales incorrectas, no se pudo procesar su petición"
+        });
+    }
+};
+
+
+
+//{ Envia correo para cambiar contraseña
 export const reset = async (req, res) => {
     const { email, password } = req.body;
     try{
@@ -92,47 +99,44 @@ export const reset = async (req, res) => {
 };
 
 
-//Users Register
-export const signUp = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
-    try{
-        let hashPassword = bcryptjs.hashSync(password, 10);
-        let newUser = await Users.create({firstName, lastName, email, password: hashPassword });
-        return res.status(201).json({
-            newUser,
-            message: "Registro exitoso!"
-        });
-        
-    }catch(error){
-        return res.status(500).json({
-            message:"No se ha logrado procesar la petición en nuestro sistema"
-        });
-    }
-};
 
-
-//Users Login
-export const login = async (req, res) => {
-    const { email, password } = req.body;
+//{ Actualiza contraseña
+export const update = async (req, res) => {
+    const { password, token} = req.body;
+    const userId = req.params.userId;
+    console.log(userId, token, password);
     try{
-        const results = await Users.findOne({where: {email: email}});
-        const valid = bcryptjs.compareSync(password, results.password);
-        
-        if(valid){
-            const token = generateJWT(results);
-            return res.status(200).json({
-                user: results, //Enviamos al cliente los resultados al mensaje del inicio de sesión
-                message: "Inicio de sesión exitoso!",
-                token,
+        //* Validar que el userId y el token existan en el mismo registro
+        const tokenObj = await ResetTokens.findOne({where: {token, [Op.and]: { 
+            userId
+        }}});
+        if(tokenObj){
+            //* Validar que el token no haya expirado
+            // La fecha actual es menor a la fecha de expiracion?
+            let validToken = moment().isBefore(tokenObj.expirationDate);
+            //* Si el token está activo y no ha expirado
+            if(tokenObj.active && validToken){
+                //* Encriptar la nueva contraseña
+                let hashPassword = bcryptjs.hashSync(password, 10);
+                //*Cambiar la contrasena en la DB
+                await Users.update({password: hashPassword}, {where: {id: tokenObj.userId}});
+                //* Cambiar el estatus del token a false
+                await ResetTokens.update({active: false}, {where: {id: tokenObj.id}});
+                res.status(200).json({
+                    message: "Se ha restablecido tu contraseña"
+                });
+            }
+            return res.status(403).json({
+                message: "Credenciales incorrectas, no se pudo procesar la petición"
             });
         }else{
-            return res.status(403).json({
-                message:"Credenciales incorrectas, no se pudo procesar su petición"
+            res.status(404).json({
+                message: "Credenciales incorrectas, no se pudo procesar la petición"
             });
         }
     }catch(error){
-        return res.status(404).json({
-            message:"Credenciales incorrectas, no se pudo procesar su petición"
+        return res.status(500).json({
+            message:"No se ha logrado procesar la petición en nuestro sistema"
         });
     }
 };

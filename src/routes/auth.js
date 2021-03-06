@@ -4,10 +4,18 @@ import {validate, userSchema, loginSchema, updatePasswordSchema} from "../middle
 
 const router = express.Router();
 
-// Enrutando peticiones
-router.post("/api/v1/signup", validate(userSchema), signUp);
-router.post("/api/v1/login", validate(loginSchema), login);
-router.post("/api/v1/reset-password", reset);
-router.put('/api/v1/users/:userId/update-password', validate(updatePasswordSchema), update);
+
+
+//{ Registra un nuevo usuario
+router.post('/signup', validate(userSchema), signUp);
+//{ Da acceso y crea token para usuario
+router.post('/login', validate(loginSchema), login);
+
+//{ Envía correo y crea token para actualizar contraseña
+router.post('/reset-password', reset);
+//{ Actualiza contraseña
+router.put('/users/:userId/update-password', validate(updatePasswordSchema), update);
+
+
 
 export default router;

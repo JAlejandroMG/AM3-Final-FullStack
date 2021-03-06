@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.Contents, {
         through: 'ContentDirectors',
-        foreingKey: 'id_Director'
+        foreignKey: 'id_Director'
       });
     }
   };

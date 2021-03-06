@@ -4,33 +4,29 @@ import cors from "cors";
 import helmet from "helmet";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
+//*Routers
+import actorsRouter from './routes/actors';
 import authRouter from "./routes/auth";
-import usersRouter from "./routes/users";
 import rolesRouter from "./routes/roles";
-// import { validateJWT } from "./middlewares/jwt.js"
+import usersRouter from "./routes/users";
 
 
 const app = express();
 
 
-//Middlewares
+//*Middlewares
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
-
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use(authRouter);
-app.use(usersRouter);
-app.use(rolesRouter);
 
-// app.use('/api/v1/');
-// app.use(authRouter);
-
-// app.use('api/v1/', authRouter);
-
-// app.use("/api/v1", validateJWT, usersRouter);
+//*Routers
+app.use('/api/v1', actorsRouter);
+app.use('/api/v1', authRouter);
+app.use('/api/v1', rolesRouter);
+app.use('/api/v1', usersRouter);
 
 
 app.get('/', (req, res) => {
@@ -40,5 +36,6 @@ app.get('/', (req, res) => {
       console.log(error);
    }
 });
+
 
 export default app;
