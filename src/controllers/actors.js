@@ -100,7 +100,7 @@ export const deleteActorById = async (req,res) => {
 
 
 
-//{ Obtiene el contenido de un actor por id
+//{ Obtiene el contenido por id de actor
 export const getContentByActorById = async (req,res) => {
    try{
       const id = req.params.id;
