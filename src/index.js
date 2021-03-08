@@ -37,7 +37,7 @@ app.use('/api/v1', usersRouter);
 
 app.get('/', (req, res) => {
    try{
-      res.send("Bienvenido al proyecto final de Módulo 3 Academlo");
+      res.send("Bienvenido al proyecto final del Módulo 3 (Node) de Academlo Fullstack");
    }catch(error){
       console.log(error);
    }
