@@ -4,7 +4,7 @@ import { Users } from "../models/";
 // import { sign } from '../middlewares/jwt';
 import { generateJWT } from "../middlewares/jwt";
 
-//Nuevas modificaciones
+
 describe("Probando el registro de usuarios", ( ) => {
 
     afterAll(async (done) => {
