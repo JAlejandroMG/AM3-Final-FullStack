@@ -57,7 +57,7 @@ export const editContentById = async (req,res) => {
          const id = req.params.id;
          await Contents.update(req.body, { where: { id }});
          const results = await Contents.findOne({ where: { id } });
-         return res.status(201).json({
+         return res.status(200).json({
             results,
             message: "El registro del contenido ha sido modificado"
          });

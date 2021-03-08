@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import app from "../index";
-import { Users } from "../models/";
+import { Users } from "../models";
 // import { sign } from '../middlewares/jwt';
 import { generateJWT } from "../middlewares/jwt";
 
