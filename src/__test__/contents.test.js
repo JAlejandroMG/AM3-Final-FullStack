@@ -62,7 +62,7 @@ describe("Probando peticiones de Contenidos", ( ) => {
    });
    
    //*=====================Test editing Content by ID
-   /* it("Modificar un actor por su id", async ( done ) => {
+   it("Modificar un actor por su id", async ( done ) => {
       //arrange
       let contentObj = {
          "id_Content_Type": 2,
@@ -83,10 +83,10 @@ describe("Probando peticiones de Contenidos", ( ) => {
       expect(response.body).toHaveProperty("message", "El registro del contenido ha sido modificado");
 
       done();
-   }); */
+   });
    
    //*=====================Test deleting Content by ID
-   /* it("Eliminar un contenido por su id", async ( done ) => {
+   it("Eliminar un contenido por su id", async ( done ) => {
       //arrange
 
       //assert
@@ -97,7 +97,7 @@ describe("Probando peticiones de Contenidos", ( ) => {
       expect(response.body).toHaveProperty("message", "Se ha eliminado el registro");
 
       done();
-   }); */
+   });
    
    //*=====================Test getting all actors of a Content by ID
    it("Obtener todos los actores de un contenido por su id", async ( done ) => {

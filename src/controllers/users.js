@@ -46,7 +46,7 @@ export const getUsers = async (req,res) => {
 //{ Edita un usuario por su Id
 export const editUser = async (req, res) => {
     const { firstName, lastName, email } = req.body;
-    const userId = req.params.userId;
+    const userId = req.params.id;
     try{
         await Users.update({ firstName, lastName, email }, { where: { id: userId }});
         const editedUser = await Users.findOne({ where: { id: userId } })
