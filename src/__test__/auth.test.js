@@ -1,14 +1,15 @@
 import supertest from "supertest";
-import app from "../app";
+import app from "../index";
 import {Users} from "../models/";
+import {sign} from "../utils/jwt";
 
 
 describe("Probando el registro de usuarios", () => {
 
-    beforeAll(async () => {
+    afterAll(async () => {
         await Users.destroy({where: { email: "kadoshrr2019@gmail.com"}})
     });
-    //=====================Test singup New Users
+    //*=====================Test singup New Users
     it("Agregando un nuevo usuario", async ( done ) => {
         //arrange
         let userObj = {
@@ -23,8 +24,8 @@ describe("Probando el registro de usuarios", () => {
 
         //act
         expect(response.status).toBe(201);
-        expect(response.body).toHaveProperty("firstName", "Roger");
-        expect(response.body).toHaveProperty("lastName", "Reyes");
+        expect(response.body).toHaveProperty("newUser");
+        expect(response.body).toHaveProperty("message", "Registro exitoso!");
         
     });
 
@@ -44,7 +45,7 @@ describe("Probando el registro de usuarios", () => {
         expect(token).toBeDefined();
     });
 
-    //Test Login
+    //=======================Test Login
     it("Iniciando sesión", async ( done ) => {
         //arrange
         let userObj = {
