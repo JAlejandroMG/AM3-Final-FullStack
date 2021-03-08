@@ -5,6 +5,8 @@ import JWT from "express-jwt"
 
 const router = express.Router();
 
+
+
 const objJWT = {secret: process.env.SECRET_KEY, algorithms: ['HS384']};
 
 //{ Crea un genero
