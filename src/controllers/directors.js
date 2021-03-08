@@ -44,7 +44,7 @@ export const getDirectorById = async (req,res) => {
    }
 };
 
- //{ Actualizar un director por id
+//{ Actualizar un director por id
 export const editDirectorById = async (req,res) => {
    try{  
          const id = req.params.id;

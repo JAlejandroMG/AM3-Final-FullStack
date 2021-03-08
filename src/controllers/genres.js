@@ -18,7 +18,7 @@ export const createGenre = async (req, res) => {
 };
 
 //{ Obtiene todos los generos
-export const getGeners = async (req,res) => {
+export const getGenres = async (req,res) => {
    try{
       const results = await Genres.findAll({ attributes: ["id", "name"] });
       return res.status(200).json(results);
