@@ -1,11 +1,11 @@
 import supertest from "supertest";
 import app from "../index";
-import { Genres } from "../models/";
+import { Genres } from "../models";
 
 describe("Probando peticiones de Generos", ( ) => {
 
     afterAll(async (done) => {
-       await Genres.destroy({where: { name: "Action"}});
+       await Genres.destroy({where: { name: "Art"}});
        done()
     });
     
@@ -13,7 +13,7 @@ describe("Probando peticiones de Generos", ( ) => {
     it("Agregando un nuevo genero", async ( done ) => {
        //arrange
        let genreObj = {
-          name: "Action"
+          name: "Art"
        };
  
        //assert
@@ -27,7 +27,7 @@ describe("Probando peticiones de Generos", ( ) => {
     });
 
     //*=====================Test getting Genres
-    it("Obteniendo todos los generos", async ( done ) => {
+    it("Obteniendo todos los género", async ( done ) => {
         //arrange
 
         //assert
@@ -41,7 +41,7 @@ describe("Probando peticiones de Generos", ( ) => {
     });
 
     //*=====================Test getting Genre by ID
-    it("Obteniendo un genero por su id", async ( done ) => {
+    it("Obteniendo un género por su id", async ( done ) => {
         //arrange
         const id = 1;
 
@@ -55,28 +55,28 @@ describe("Probando peticiones de Generos", ( ) => {
     });
 
     //*=====================Test editing Genre by ID
-    it("Modificar un genero por su id", async ( done ) => {
+    it("Modificar un género por su id", async ( done ) => {
         //arrange
         const genreObj = {
-        name: "Action"
+        name: "Popup"
         };
 
         //assert
-        const response = await supertest(app).put(`/api/v1/genres/15/2`).send(genreObj);
+        const response = await supertest(app).put(`/api/v1/genres/40/2`).send(genreObj);
 
         //act
         expect(response.status).toBe(200);
-        expect(response.body).toHaveProperty("message", "El registro del genero ha sido modificado");
+        expect(response.body).toHaveProperty("message", "El registro del género ha sido modificado");
 
         done();
     });
 
     //*=====================Test deleting Genre by ID
-    it("Eliminar un genero por su id", async ( done ) => {
+    it("Eliminar un género por su id", async ( done ) => {
         //arrange
 
         //assert
-        const response = await supertest(app).delete(`/api/v1/genres/15/1`);
+        const response = await supertest(app).delete(`/api/v1/genres/40/1`);
 
         //act
         expect(response.status).toBe(200);
@@ -86,7 +86,7 @@ describe("Probando peticiones de Generos", ( ) => {
     });
 
     //*=====================Test getting all content of an Genre by ID
-    it("Obtener todo el contenido de un genero por su id", async ( done ) => {
+    it("Obtener todo el contenido de un género por su id", async ( done ) => {
         //arrange
         const id = 1;
 

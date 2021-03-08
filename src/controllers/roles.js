@@ -9,7 +9,7 @@ export const createRole = async (req, res) => {
       let newRole = await Roles.create({ name });
       return res.status(201).json({
          newRole,
-         message: "Registro exitoso"
+         message: "Registro exitoso!"
       });
    }catch(error){
       return res.status(400).json({

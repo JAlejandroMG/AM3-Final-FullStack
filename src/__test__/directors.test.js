@@ -1,11 +1,11 @@
 import supertest from "supertest";
 import app from "../index";
-import { Directors } from "../models/";
+import { Directors } from "../models";
 
 describe("Probando peticiones de Directores", ( ) => {
 
     afterAll(async (done) => {
-       await Directors.destroy({where: { name: "Steven Spielberg"}});
+       await Directors.destroy({where: { name: "Pablito Ruiz"}});
        done()
     });
     
@@ -13,11 +13,11 @@ describe("Probando peticiones de Directores", ( ) => {
     it("Agregando un nuevo director", async ( done ) => {
        //arrange
        let directorObj = {
-          name: "Steven Spielberg"
+          name: "Pablito Ruiz"
        };
  
        //assert
-       const response = await supertest(app).post("/api/v1/directors/3").send(directorObj);
+       const response = await supertest(app).post("/api/v1/directors/2").send(directorObj);
  
        //act
        expect(response.status).toBe(201);
@@ -57,11 +57,11 @@ describe("Probando peticiones de Directores", ( ) => {
  it("Modificar un director por su id", async ( done ) => {
     //arrange
     const directorObj = {
-       name: "George Lucas"
+       name: "Mario Reyna"
     };
 
     //assert
-    const response = await supertest(app).put(`/api/v1/director/500/2`).send(directorObj);
+    const response = await supertest(app).put(`/api/v1/directors/769/2`).send(directorObj);
 
     //act
     expect(response.status).toBe(200);
@@ -75,7 +75,7 @@ describe("Probando peticiones de Directores", ( ) => {
     //arrange
 
     //assert
-    const response = await supertest(app).delete(`/api/v1/directors/500/1`);
+    const response = await supertest(app).delete(`/api/v1/directors/769/1`);
 
     //act
     expect(response.status).toBe(200);

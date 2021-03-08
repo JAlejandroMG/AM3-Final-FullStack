@@ -51,9 +51,9 @@ export const editDirectorById = async (req,res) => {
          const { name } = req.body;
          await Directors.update({name}, { where: { id }});
          const results = await Directors.findOne({ where: { id }, attributes: ["id", "name"] });
-         return res.status(201).json({
+         return res.status(200).json({
             results,
-            message: "El registro del actor ha sido modificado"
+            message: "El registro del director ha sido modificado"
          });
    }catch(error){
       console.log(error);

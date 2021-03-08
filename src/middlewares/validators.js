@@ -46,13 +46,13 @@ export const roleSchema = joi.object({
 //{ User - auth/signup - users/createUser
 export const userSchema = joi.object({
    firstName: joi.string().required().pattern(new RegExp('^[a-zA-ZÀ-ÿ ]{3,30}$')).label("firstName").messages(spanishJoi),
-   lastName: joi.string().required().pattern(new RegExp('^[a-zA-ZÀ-ÿ ]{3,30}$')).label("Apellido").messages(spanishJoi),
+   lastName: joi.string().required().pattern(new RegExp('^[a-zA-ZÀ-ÿ ]{3,30}$')).label("lastName").messages(spanishJoi),
    email: joi.string().required().email().label("email").messages(spanishJoi),
    password: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{8,30}$')).label("password").messages(spanishJoi)
 });
 
 export const userEditSchema = joi.object({
    firstName: joi.string().required().pattern(new RegExp('^[a-zA-ZÀ-ÿ ]{3,30}$')).label("firstName").messages(spanishJoi),
-   lastName: joi.string().required().pattern(new RegExp('^[a-zA-ZÀ-ÿ ]{3,30}$')).label("Apellido").messages(spanishJoi),
+   lastName: joi.string().required().pattern(new RegExp('^[a-zA-ZÀ-ÿ ]{3,30}$')).label("lastName").messages(spanishJoi),
    email: joi.string().required().email().label("email").messages(spanishJoi),
 });
