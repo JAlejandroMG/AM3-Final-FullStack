@@ -8,13 +8,20 @@ import {Op} from "sequelize";
 export const createUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
     try{
-        let hashPassword = bcryptjs.hashSync(password, 10);
-        let newUser = await Users.create({firstName, lastName, email, password: hashPassword });
-        return res.status(201).json({
-            newUser,
-            message: "Registro exitoso"
-        });
-        
+        const userExists = await Users.findOne({ where: { email } });
+        console.log(userExists);
+        if(!userExists) {
+            let hashPassword = bcryptjs.hashSync(password, 10);
+            let newUser = await Users.create({firstName, lastName, email, password: hashPassword });;
+            return res.status(201).json({
+                newUser,
+                message: "Registro exitoso!"
+            });
+        } else {
+            return res.status(400).json({
+                message: "Hubo un error al tratar de registrar el usuario en el sistema"
+            });
+        }
     }catch(error){
         return res.status(500).json({
             message:"No se ha logrado procesar la petición en nuestro sistema"

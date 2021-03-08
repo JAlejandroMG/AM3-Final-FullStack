@@ -31,3 +31,9 @@
 //* Valores por defecto createdAt, updatedAt
 //* Validación de Roles
 //* Actors
+//* Directores
+//* Géneros
+//+ 20210306
+//* Contents
+//+ 20210307
+//* Test auth, actors
