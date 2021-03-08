@@ -36,4 +36,5 @@
 //+ 20210306
 //* Contents
 //+ 20210307
-//* Test auth, actors
+//* Test auth, actors & cotents
+//* Test directors & genres

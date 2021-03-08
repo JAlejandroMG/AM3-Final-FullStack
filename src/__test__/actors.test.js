@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import app from "../index";
-import { Actors } from "../models/";
+import { Actors } from "../models";
 
 
 describe("Probando peticiones de Actores", ( ) => {
@@ -55,7 +55,7 @@ describe("Probando peticiones de Actores", ( ) => {
    });
    
    //*=====================Test editing Actor by ID
-   it("Modificar un actor por su id", async ( done ) => {
+   /* it("Modificar un actor por su id", async ( done ) => {
       //arrange
       const actorObj = {
          name: "Mario Reyna"
@@ -69,10 +69,10 @@ describe("Probando peticiones de Actores", ( ) => {
       expect(response.body).toHaveProperty("message", "El registro del actor ha sido modificado");
 
       done();
-   });
+   }); */
    
    //*=====================Test deleting Actor by ID
-   it("Eliminar un actor por su id", async ( done ) => {
+   /* it("Eliminar un actor por su id", async ( done ) => {
       //arrange
 
       //assert
@@ -83,7 +83,7 @@ describe("Probando peticiones de Actores", ( ) => {
       expect(response.body).toHaveProperty("message", "Se ha eliminado el registro");
 
       done();
-   });
+   }); */
    
    //*=====================Test getting all content of an Actor by ID
    it("Obtener todo el contenido de un actor por su id", async ( done ) => {
