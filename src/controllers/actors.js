@@ -59,7 +59,7 @@ export const editActorById = async (req,res) => {
          const { name } = req.body;
          await Actors.update({ name }, { where: { id }});
          const results = await Actors.findOne({ where: { id }, attributes: ["id", "name"] });
-         return res.status(201).json({
+         return res.status(200).json({
             results,
             message: "El registro del actor ha sido modificado"
          });
