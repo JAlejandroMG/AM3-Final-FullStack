@@ -2,6 +2,7 @@ import express from "express";
 import { userRole, getUsers, createUser, editUser, editUserRole, getUsersRoles } from "../controllers/users";
 import { validate, userSchema, userEditSchema, roleUserSchema } from "../middlewares/validators";
 import { isEditor, isUser } from '../middlewares/roleAuth';
+import JWT from "express-jwt";
 
 const router = express.Router();
 
