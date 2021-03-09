@@ -9,6 +9,13 @@
       "name": "Squad #4 Academlo Generación Agosto 2020-2021"
     }
   },
+  "servers": [{
+    "url": "http://localhost:8000",
+    "description": "Desarrollo"
+  }, {
+    "url": "https://node-fullstack-squad4.herokuapp.com",
+    "description": "Producción Heroku"
+  }],
   "paths": {
     "/api/v1/login": {
       "post": {
