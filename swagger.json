@@ -85,7 +85,7 @@
         }
       }
     },
-    "/api/v1/users/users:Id/update-password": {
+    "/api/v1/users/:userId/update-password": {
       "put": {
         "tags": ["Auth"],
         "description": "Actualizar el usuario basado en el Token UUID",
@@ -106,7 +106,7 @@
         }
       }
     },
-    "/api/v1/actors": {
+    "/api/v1/actors/:userId": {
       "get": {
         "tags": ["Actors"],
         "description": "Obtener todos los actores del sistema",
@@ -146,7 +146,7 @@
         }
       }
     },
-    "/api/v1/actors/:id": {
+    "/api/v1/actors/:id/:userId": {
       "get": {
         "tags": ["Actors"],
         "description": "Obtener un actor por ID en el sistema",
@@ -205,7 +205,7 @@
         }
       }
     },
-    "/api/v1/actors/:id/contents": {
+    "/api/v1/actors/:id/contents/:userId": {
       "get": {
         "tags": ["Actors"],
         "description": "Para obtener un actor y todos los contenidos en los que ha participado",
@@ -226,7 +226,7 @@
         }
       }
     },
-    "/api/v1/contents": {
+    "/api/v1/contents/:userId": {
       "get": {
         "tags": ["Contents"],
         "description": "Obtener todos los contentidos del sistema",
@@ -266,7 +266,7 @@
         }
       }
     },
-    "/api/v1/contents/:id": {
+    "/api/v1/contents/:id/:userId": {
       "get": {
         "tags": ["Contents"],
         "description": "Obtener un contenido por ID en el sistema",
@@ -325,7 +325,7 @@
         }
       }
     },
-    "/api/v1/contents/:id/actors": {
+    "/api/v1/contents/:id/actors/:userId": {
       "get": {
         "tags": ["Contents"],
         "description": "Para obtener un contenido con los actores que han participado",
@@ -346,7 +346,7 @@
         }
       }
     },
-    "/api/v1/contents/:id/directors": {
+    "/api/v1/contents/:id/directors/:userId": {
       "get": {
         "tags": ["Contents"],
         "description": "Para obtener un contenido con los directores que han participado",
@@ -367,49 +367,7 @@
         }
       }
     },
-    "/api/v1/contents-types/": {
-      "get": {
-        "tags": ["Contents"],
-        "description": "Para obtener el tipo de contenido",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContentTypes"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      }
-    },
-    "/api/v1/contents-ratings/": {
-      "get": {
-        "tags": ["Contents"],
-        "description": "Para obtener el rating según el contenido",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContentRatings"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      }
-    },
-    "/api/v1/contents/:id/genres": {
+    "/api/v1/contents/:id/genres/:userId": {
       "get": {
         "tags": ["Contents"],
         "description": "Para obtener un contenido por generos",
@@ -456,6 +414,27 @@
         ]
       }
     },
+    "/api/v1/roles/:roleId": {
+      "put": {
+        "tags": ["Roles"],
+        "description": "Modificar un rol",
+        "requestBody": {
+          "description": "Datos de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Roles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Se ha hecho la modificación solicitada"
+          }
+        }
+      }
+    },
     "/api/v1/users/:userId/roles/rolesId": {
       "post": {
         "tags": ["Roles"],
@@ -477,7 +456,7 @@
         }
       }
     },
-    "/api/v1/directors": {
+    "/api/v1/directors/:userId": {
       "get": {
         "tags": ["Directors"],
         "description": "Obtener todos los directores del sistema",
@@ -517,7 +496,7 @@
         }
       }
     },
-    "/api/v1/directors/:id": {
+    "/api/v1/directors/:id/:userId": {
       "get": {
         "tags": ["Directors"],
         "description": "Obtener un director por ID en el sistema",
@@ -576,106 +555,7 @@
         }
       }
     },
-    "/api/v1/episode-list": {
-      "get": {
-        "tags": ["EpisodeList"],
-        "description": "Obtener lista de episodios de una serie o pelicula en sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EpisodeList"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      },
-      "post": {
-        "tags": ["EpisodeList"],
-        "description": "Registrar un lista de episodios",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Contents"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      }
-    },
-    "/api/v1/episode-list/:id": {
-      "get": {
-        "tags": ["EpisodeList"],
-        "description": "Obtener un Episodio por ID en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetContents"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      },
-      "put": {
-        "tags": ["EpisodeList"],
-        "description": "Actualizar un Episodio por ID en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateContent"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["EpisodeList"],
-        "description": "Borrar un Episodio por ID en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteContent"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      }
-    },
-    "/api/v1/genres": {
+    "/api/v1/genres/:userId": {
       "get": {
         "tags": ["Genres"],
         "description": "Obtener genero de una pelicula o serie en el sistema",
@@ -715,7 +595,7 @@
         }
       }
     },
-    "/api/v1/genres/:id": {
+    "/api/v1/genres/:id/:userId": {
       "get": {
         "tags": ["Genres"],
         "description": "Obtener un Genero por ID en el sistema",
@@ -774,106 +654,7 @@
         }
       }
     },
-    "/api/v1/languages": {
-      "get": {
-        "tags": ["Languages"],
-        "description": "Obtener todos los idiomas en que está una pelicula o serie en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Languages"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Languages"],
-        "description": "Registrar un idioma para series o peliculas sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Languages"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      }
-    },
-    "/api/v1/languages/:id": {
-      "get": {
-        "tags": ["Languages"],
-        "description": "Obtener un idioma por ID en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetLanguage"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Languages"],
-        "description": "Actualizar un idioma por ID en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateLanguage"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Languages"],
-        "description": "Borrar un idioma por ID en el sistema",
-        "requestBody": {
-          "description": "Credenciales de acceso",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteLanguage"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Credenciales correctas"
-          }
-        }
-      }
-    },
-    "/api/v1/users": {
+    "/api/v1/users/:userId": {
       "get": {
         "tags": ["Users"],
         "description": "Obtener todos los usuarios de la base de datos (protegida)",
@@ -1174,104 +955,6 @@
           }
         }
       },
-      "ContentRatings": {
-        "type": "object",
-        "required": ["name"],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "content_rating_id": {
-            "type": "integer"
-          },
-          "content_type_id": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          },
-          "updatedAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          }
-        }
-      },
-      "ContentTypes": {
-        "type": "object",
-        "required": ["name"],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "content_type_id": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          },
-          "updatedAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          }
-        }
-      },
-      "EpisodeList": {
-        "type": "object",
-        "required": [
-          "episode_id",
-          "season_num",
-          "episode_name",
-          "release_date",
-          "episode_rating",
-          "episode_num",
-          "createdAt",
-          "updatedAt",
-          "episode_imdb_link",
-          "episode_score_votes"
-        ],
-        "properties": {
-          "episode_id": {
-            "type": "integer"
-          },
-          "season_num": {
-            "type": "integer"
-          },
-          "episode_name": {
-            "type": "string"
-          },
-          "release_date": {
-            "type": "string"
-          },
-          "episode_rating": {
-            "type": "number"
-          },
-          "episode_num": {
-            "type": "integer"
-          },
-          "createdAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          },
-          "updatedAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          },
-          "episode_imdb_link": {
-            "type": "string"
-          },
-          "episode_score_votes": {
-            "type": "integer"
-          }
-        }
-      },
       "ResetPassword": {
         "type": "object",
         "required": ["email"],
@@ -1358,51 +1041,6 @@
         }
       },
       "DeleteGenre": {
-        "type": "object",
-        "required": [""],
-        "properties": {}
-      },
-      "Languages": {
-        "type": "object",
-        "required": ["language_id", "name"],
-        "properties": {
-          "language_id": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          },
-          "updatedAt": {
-            "type": "string",
-            "pattern": "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/",
-            "example": "2021-03-05"
-          }
-        }
-      },
-      "GetLanguage": {
-        "type": "object",
-        "required": ["id"],
-        "properties": {
-          "id": {
-            "type": "integer"
-          }
-        }
-      },
-      "UpdateLanguage": {
-        "type": "object",
-        "required": ["id"],
-        "properties": {
-          "id": {
-            "type": "integer"
-          }
-        }
-      },
-      "DeleteLanguage": {
         "type": "object",
         "required": [""],
         "properties": {}

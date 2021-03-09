@@ -23,7 +23,7 @@ export const isAdmin = () => {
          if(roleName === "Administrador") {
             next();
          } else {
-            res.json({
+            res.status(403).json({
                message: "No tienes los permisos necesarios para acceder a los recursos"
          });
          }
@@ -45,7 +45,7 @@ export const isEditor = () => {
          if(roleName === "Editor" || roleName === "Administrador") {
             next();
          } else {
-            res.json({
+            return res.status(403).json({
                message: "No tienes los permisos necesarios para acceder a los recursos"
          });
          }
@@ -67,7 +67,7 @@ export const isUser = () => {
          if(roleName === "Usuario" || roleName === "Editor" || roleName === "Administrador") {
             next();
          } else {
-            res.json({
+            return res.status(403).json({
                message: "No tienes los permisos necesarios para acceder a los recursos"
          });
          }
