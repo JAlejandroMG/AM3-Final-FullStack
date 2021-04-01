@@ -37,7 +37,7 @@ app.use('/api/v1', usersRouter);
 
 app.get('/', (req, res) => {
    try{
-      res.send("Bienvenido al proyecto final del Módulo 3 (Node) de Academlo Fullstack");
+      res.send("Bienvenido al proyecto final del Módulo 3 (Node) de Academlo Fullstack.\nWellcome to the Module 3 (Node) final project from Academlo Fullstack Program\n\nPara hacer peticiones a la API-Rest, puede descargar el archivo Insomnia_2021-03-08 del repositorio de Github.\nTo make requests to the API-Rest, you can download the file Insomnia_202-03-08 from the Github repository.");
    }catch(error){
       console.log(error);
    }
